@@ -1,3 +1,6 @@
-import App from './modules/app.js';
+import App from './modules/app';
 
-const app = new App();
+document.addEventListener('DOMContentLoaded', () => {
+    App.run();
+    console.log("si ci sono");
+});

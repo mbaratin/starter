@@ -1,7 +1,18 @@
 class App {
-  constructor {
-    console.log("porco dio");
-  }
+
+    constructor() {
+        this.body = 'body';
+    }
+
+    run() {
+        this.apply();
+    }
+
+    apply() {
+        console.log("certo che ci sono");
+    }
+
 }
 
-export default App;
+const app = new App();
+export default app;

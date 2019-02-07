@@ -1,7 +1,11 @@
 "use strict";
 
-var _app = _interopRequireDefault(require("./modules/app.js"));
+var _app = _interopRequireDefault(require("./modules/app"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var app = new _app.default();
+document.addEventListener('DOMContentLoaded', function () {
+  _app.default.run();
+
+  console.log("si ci sono");
+});
