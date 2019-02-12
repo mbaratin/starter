@@ -1,6 +1,6 @@
 import App from './modules/app';
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', function(){
     App.run();
     console.log("si ci sono");
-});
+ });

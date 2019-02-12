@@ -11,6 +11,7 @@ const browsersync = require("browser-sync").create();
 const notify = require('gulp-notify');
 const autoprefixer = require('gulp-autoprefixer');
 const plumber = require('gulp-plumber');
+const webpack = require('webpack-stream');
 
 // BrowserSync
 function browserSync(done) {
@@ -68,7 +69,7 @@ function style() {
 
 // js
 function js() {
-    return src('./src/js/**.js')
+    return src(['./src/js/**.js'])
         .pipe(plumber({
             errorHandler: function(err) {
                 notify.onError({
@@ -77,8 +78,31 @@ function js() {
                 })(err);
             }
         }))
-        .pipe(babel({
-            presets: ['es2015']
+        .pipe(webpack({
+            watch: true,
+            mode: "production",
+            entry: "./src/js/index.js",
+            output: {
+                filename: "[name].js"
+            },
+            devtool: "source-map",
+            module: {
+                rules: [{
+                    test: /\.(js|jsx)$/,
+                    exclude: /(node_modules)/,
+                    loader: 'babel-loader',
+                    query: {
+                        presets: [
+                            ['@babel/preset-env', {
+                                modules: false
+                            }],
+                        ],
+                    },
+                }, ],
+            },
+            resolve: {
+                modules: ['node_modules'],
+            }
         }))
         .pipe(dest('./dist/js'))
         .pipe(browsersync.stream());
