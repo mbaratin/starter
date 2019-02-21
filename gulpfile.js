@@ -12,6 +12,7 @@ const notify = require('gulp-notify');
 const autoprefixer = require('gulp-autoprefixer');
 const plumber = require('gulp-plumber');
 const webpack = require('webpack-stream');
+const sourcemaps = require('gulp-sourcemaps');
 
 // BrowserSync
 function browserSync(done) {
@@ -57,11 +58,13 @@ function style() {
                 })(err);
             }
         }))
-        .pipe(sass())
+        .pipe(sourcemaps.init())
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],
             cascade: false
         }))
+        .pipe(sourcemaps.write('.'))
         .pipe(dest('./dist/css'))
         .pipe(browsersync.stream());
 }
