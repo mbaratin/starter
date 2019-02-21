@@ -1,3 +1,4 @@
+![alt text](https://www.matteobaratin.com/assets/img/BANNER_GITHUB.jpg "STARTER 6")
 # STARTER Project
 A little front end starter to compile html modules, scss, javascript ES6.
 
