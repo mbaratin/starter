@@ -1,5 +1,5 @@
 # STARTER Project
-A little starter with scss, javascript ES6 and more
+A little front end starter to compile html modules, scss, javascript ES6.
 
 ## Tecnology used
 - Babel 7.2
@@ -16,3 +16,17 @@ https://www.npmjs.com/package/gulp-html-tag-include
 https://www.npmjs.com/package/gulp-sass
 - gulp-autoprefixer --->
 https://www.npmjs.com/package/gulp-autoprefixer
+- gulp-sourcemaps --->
+https://www.npmjs.com/package/gulp-sourcemaps
+
+### JS
+- webpack --->
+https://www.npmjs.com/package/webpack-stream
+
+### OTHER
+- browsersync --->
+https://www.browsersync.io/docs/gulp
+- gulp-notify --->
+https://www.npmjs.com/package/gulp-notify
+- gulp-plumber --->
+https://www.npmjs.com/package/gulp-plumber
