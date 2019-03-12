@@ -12,6 +12,7 @@ const notify = require('gulp-notify');
 const autoprefixer = require('gulp-autoprefixer');
 const plumber = require('gulp-plumber');
 const webpack = require('webpack-stream');
+const svgSprite = require('gulp-svg-sprite');
 const sourcemaps = require('gulp-sourcemaps');
 
 // BrowserSync
@@ -69,6 +70,30 @@ function style() {
         .pipe(browsersync.stream());
 }
 
+// icons
+function svg() {
+    return src('./src/svg/**.svg')
+        .pipe(plumber({
+            errorHandler: function(err) {
+                notify.onError({
+                    title: "Gulp error in " + err.plugin,
+                    message: err.toString()
+                })(err);
+            }
+        }))
+        .pipe(svgSprite({
+          mode: {
+           symbol: {
+             dest: '.',
+             example: true,
+             sprite: 'sprite.svg'
+           },
+         }
+        }))
+        .pipe(dest('./dist/svg'))
+        .pipe(browsersync.stream());
+}
+
 
 // js
 function js() {
@@ -117,6 +142,7 @@ function js() {
 function watchFiles() {
     watch("./src/template/**.html", html);
     watch("./src/scss/**.scss", style);
+    watch("./src/svg/**.svg", svg);
     watch("./src/js/**.js", js);
     src('./src/js/**.js')
         .pipe(notify('Gulp is Watching, cheer! 🍺'));
@@ -125,5 +151,6 @@ function watchFiles() {
 exports.js = js;
 exports.html = html;
 exports.style = style;
-exports.default = parallel(html, style, js, watchFiles, browserSync);
+exports.svg = svg;
+exports.default = parallel(html, style, svg, js, watchFiles, browserSync);
 exports.watch = watchFiles;
