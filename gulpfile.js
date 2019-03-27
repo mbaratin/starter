@@ -140,11 +140,11 @@ function js() {
 
 // Watch files
 function watchFiles() {
-    watch("./src/template/**.html", html);
-    watch("./src/scss/**.scss", style);
+    watch("./src/template/**/*.html", html);
+    watch("./src/scss/**/*.scss", style);
     watch("./src/svg/**.svg", svg);
-    watch("./src/js/**.js", js);
-    src('./src/js/**.js')
+    watch("./src/js/**/*.js", js);
+    src('./src/js/**/*.js')
         .pipe(notify('Gulp is Watching, cheer! 🍺'));
 }
 
