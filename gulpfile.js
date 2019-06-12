@@ -109,11 +109,19 @@ function js() {
         .pipe(webpack({
             watch: true,
             mode: "production",
-            entry: "./src/js/index.js",
+            entry: {
+              index: './src/js/main.js',
+            },
             output: {
                 filename: "[name].js"
             },
+            optimization: {
+                splitChunks: {
+                  chunks: 'all'
+                }
+             },
             devtool: "source-map",
+            performance: { hints: false },
             module: {
                 rules: [{
                     test: /\.(js|jsx)$/,
